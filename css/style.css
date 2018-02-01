@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html { padding: 0; margin: 0; }
+body {
+	margin: 0;
+	padding: 0;
+
+	min-height: 80px;
+	width: 520px;
+
+	font-family: 'Open Sans', sans-serif;
+}
+
+.loading {
+	display: none;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+
+.error {
+	display: none;
+	margin-top: 50px;
+	font-size: 12pt;
+	color: #585858;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+}
+
+article {
+	display: none;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	padding: 6px 4px;
+
+	font-size: 10pt;
+	color: rgb(105, 105, 105);
+
+	box-sizing: border-box;
+}
+
+article div {
+	position: static;
+}
+
+article .imgwrapper {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #fff;
+	border-radius: 100px;
+	overflow: hidden;
+	float: left;
+	margin-right: 7px;
+}
+
+article .imgwrapper img {
+	position: absolute;
+	min-width: 100px;
+	height: 120px;
+	top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
+article .missionTitle {
+	font-size: 12pt;
+	color: #000;
+	margin-bottom: 4px;
+	width: calc(100% - 195px);
+}
+
+article .anounce {
+	position: absolute;
+	right: 6px;
+	top: 8px;
+	color: red;
+}
+
+article .anounce a {
+	text-decoration: none;
+	color: inherit;
+}
+
+
+.ellipsis {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
