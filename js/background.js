@@ -2,7 +2,8 @@ var lastNotification = 0;
 var refreshTimer = 5; // in minutes
 
 function showNotification(uid, title, time) {
-    console.log("ROCKET" + uid);
+    console.log((new Date()).toLocaleString('en-GB', { timeZone: 'UTC' }) +
+        " | Notification ROCKET" + uid + ": " + title);
     chrome.notifications.create("ROCKET" + uid, {
         type: 'basic',
         iconUrl: 'img/icon_128.png',
@@ -45,7 +46,7 @@ function getData() {
 
         }
     };
-    xhttp.open("GET", "https://launchlibrary.net/1.3/launch/next/1", true);
+    xhttp.open("GET", "https://launchlibrary.net/1.4/launch/next/1", true);
     xhttp.send();
 }
 

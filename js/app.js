@@ -2,7 +2,7 @@
 $(".loading").fadeIn( 0 );
 
 $.ajax({
-  url: "https://launchlibrary.net/1.3/launch/next/5"
+  url: "https://launchlibrary.net/1.4/launch/next/5"
 }).done(function(data) {
     drawArticles(data);
     $(".loading img").fadeOut( 200, function(){
