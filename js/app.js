@@ -1,25 +1,22 @@
 /** BOOTSTRAP */
 $(".loading").fadeIn( 0 );
+$(".loading").css("margin-top", "200px");
 
 $.ajax({
   url: "https://launchlibrary.net/1.4/launch/next/5"
 }).done(function(data) {
+    $(".loading").css("margin-top", "0px");
     drawArticles(data);
     $(".loading img").fadeOut( 200, function(){
-    	$(".loading").slideUp( 100, function(){
-    		$( "article" ).each(function( index ) {
-				$(this).fadeIn(200);
-			});
-
-			$("a").click(function() {
-				var url = $(this).attr('href');
-				chrome.tabs.create({'url': url});
-			})
-    	} );
+    	$(".loading").slideUp( 100 );
+        $("a").click(function() {
+            var url = $(this).attr('href');
+            chrome.tabs.create({'url': url});
+        });
     });
-  })
-  .fail(function() {
-    $(".wrapper").append("<div class=\"error\">Servers temporarily offline, please try again later.</div>");
+}).fail(function() {
+    $(".loading").css("margin-top", "0px");
+	$(".wrapper").append("<div class=\"error\">Servers temporarily offline, please try again later.</div>");
     $(".loading img").fadeOut( 200, function(){
     	$(".loading").slideUp( 100, function(){
     		$(".error").slideDown(200);
@@ -86,6 +83,7 @@ function drawArticles(data) {
 
 		elem += "</article>";
 		$(".wrapper").append(elem);
+        $(".wrapper").fadeIn({duration: 600});
 	}
 }
 

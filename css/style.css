@@ -6,7 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 
-	min-height: 80px;
+	min-height: 540px;
 	width: 420px;
 
 	font-family: 'Open Sans', sans-serif;
@@ -16,11 +16,11 @@ body {
 	width: 100%;
 	min-height: 100%;
 	background-color: #f4f4f4;
+	display: none;
 }
 
 article {
 	position: relative;
-	display: none;
 	width: 100%;
 	overflow-x: hidden;
 	padding: 6px 16px;
@@ -101,6 +101,7 @@ article:first-of-type .imgwrapper {
 	margin-right: 0px;
 	border-bottom-left-radius: 60px;
 	border-top-left-radius: 60px;
+	top: -6px;
 }
 
 article:first-of-type .imgwrapper img {
@@ -160,9 +161,17 @@ article:first-of-type .timeleft {
 
 .loading {
 	display: none;
-	width: 100%;
+	position: relative;
+	width: 100px;
 	height: 100px;
-	text-align: center;
+
+	left: calc(50% - 50px);
+	top: 50px;
+
+	-webkit-transition: margin-top 2s;
+	-moz-transition: margin-top 2s;
+	-o-transition: margin-top 2s;
+	transition: margin-top 2s;
 }
 
 .error {
