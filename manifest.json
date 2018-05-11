@@ -1,7 +1,7 @@
 {
    "name": "Rocket Launch Schedule",
    "description": "List of all upcoming Launches",
-   "version": "18.5.13",
+   "version": "18.5.14",
    "manifest_version": 2,
 
    "browser_action": {
