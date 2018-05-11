@@ -1,8 +1,9 @@
 var lastNotification = 0;
-var refreshTimer = 10; // in minutes
+var refreshTimer = 5; // in minutes
 
 function showNotification(uid, title, time) {
-    chrome.notifications.create("_" + uid, {
+    console.log("ROCKET" + uid);
+    chrome.notifications.create("ROCKET" + uid, {
         type: 'basic',
         iconUrl: 'img/icon_128.png',
         title: title,
@@ -32,10 +33,12 @@ function getData() {
                 if(data['id'] != lastNotification) {
                     lastNotification = data.id;
 
+                    var minStr = (minutes > 0) ? parseInt(minutes) + " minutes" : "now";
+
                     showNotification(
                         data.id + Math.floor((Math.random() * 100000) + 1),
                         data.name,
-                        parseInt(minutes) + " minutes"
+                        minStr
                     );
                 }
             }
