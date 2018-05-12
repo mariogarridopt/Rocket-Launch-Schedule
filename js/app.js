@@ -69,10 +69,16 @@ function drawArticles(data) {
 		var date = new Date(item.isonet.substring(0, 4) + "-" + item.isonet.substring(4, 6) + "-" + item.isonet.substring(6, 11) + ":" + item.isonet.substring(11, 13) + ":" + item.isonet.substring(13, 17));
 
 		if(i == 0) {
-		    elem += '<div class="timeleft">' + formatTimeLeft(date) + '</div>';
+		    var formatedTimeLeft = formatTimeLeft(date);
+            if(formatedTimeLeft <= 0) {
+                formatedTimeLeft = "GO for launch!";
+            }else {
+                formatedTimeLeft = "T - " + formatedTimeLeft;
+            }
+		    elem += '<div class="timeleft">' + formatedTimeLeft + '</div>';
             elem += '<div class="datetime">' + formatDate(date) + ' at ' + formatTime(date) + '</div>';
         }else {
-            elem += '<div class="datetime">' + formatDate(date) + ' at ' + formatTime(date) + ' | [ <strong>'  + formatTimeLeft(date) + '</strong> ]</div>';
+            elem += '<div class="datetime">' + formatDate(date) + ' at ' + formatTime(date) + ' | [ <strong>'  + formatTimeLeft(date).replace(" days", "D")  + ' left</strong> ]</div>';
         }
 
 		
@@ -122,14 +128,14 @@ function formatTimeLeft(date) {
     var text = "";
 
     if(days > 0) {
-        text += days + "d ";
+        text += days + " days ";
 	}
 
-    text += hours + "h "
-        + minutes + "m left";
+    text += hours + "H "
+        + minutes + "M";
 
     if(days < 1 && hours < 1 && minutes < 1) {
-        text = "now";
+        text = 0;
 	}
 
     return text;
