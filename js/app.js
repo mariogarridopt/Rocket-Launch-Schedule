@@ -14,6 +14,16 @@ $.ajax({
             chrome.tabs.create({'url': url});
         });
     });
+
+    chrome.alarms.clearAll();
+    console.log("####### CLEAR NOTIFICATIONS #######");
+    for(var i = 0; i < data['launches'].length; i++) {
+        var item = data['launches'][i];
+        var date = new Date(item.isonet.substring(0, 4) + "-" + item.isonet.substring(4, 6) + "-" + item.isonet.substring(6, 11) + ":" + item.isonet.substring(11, 13) + ":" + item.isonet.substring(13, 17));
+        chrome.alarms.create(item.id.toString(), { when:  (date - 900000) });
+        console.log("Alarm created: " + item.name + " at " + new Date(date - 900000).toLocaleString());
+    }
+
 }).fail(function() {
     $(".loading").css("margin-top", "0px");
 	$(".wrapper").append("<div class=\"error\">Servers temporarily offline, please try again later.</div>");
@@ -82,9 +92,14 @@ function drawArticles(data) {
         }
 
 		
-		if(item.vidURLs.length > 0) {
-			elem += '<span class="anounce livestream"><a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><strong>&#149;</strong>&nbsp; Watch Live</a></span>';
-		}
+		if(item.vidURLs.length > 0 && i == 0) {
+			elem += '<span class="anounce livestream"><a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><strong>&#149;</strong>&nbsp;&nbsp;Watch Live</a></span>';
+            elem += '<span class="anounce more-info"><a href="https://rocket.watch/#id=' + item.id + '"><strong>#</strong>&nbsp;More info</a></span>';
+		}else {
+            elem += '<span class="anounce more-info"><a href="https://rocket.watch/#id=' + item.id + '">See more</a></span>';
+        }
+
+
 
 
 		elem += "</article>";
