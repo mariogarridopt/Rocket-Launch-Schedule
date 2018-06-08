@@ -38,11 +38,15 @@ function drawArticles(data) {
 	for(var i = 0; i < data.launches.length; i++) {
 		var elem = "<article>";
 		var item = data.launches[i];
+        var launchLibraryPlaceHolderImage = "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_1920.png";
 
-		if(	item.rocket.imageURL == null || item.rocket.imageURL == "" || item.rocket.imageURL == "Array") {
-			var imgSrc = 'img/default_rocket.png';
+		if(	item.rocket.imageURL == null || item.rocket.imageURL == "" || item.rocket.imageURL == "Array" || item.rocket.imageURL == launchLibraryPlaceHolderImage) {
+			//var imgSrc = 'img/default_rocket.png';
+            var contryCode = item.lsp.countryCode.toLowerCase();
+            var imgSrc = 'https://restcountries.eu/data/' + contryCode + '.svg';
 		}else {
 			var imgSrc = item.rocket.imageURL.replace("_1920.", "_" + item.rocket.imageSizes[0] + ".");
+			//var imgSrc = item.rocket.imageURL.replace("_1920.", "_320.");
 		}
 
 
@@ -65,12 +69,18 @@ function drawArticles(data) {
 		elem += '<div class="missionTitle ellipsis">' + missionName + '</div>';
 
         missTags = "";
-		if (item.missions.length > 0) {
+		if (item.missions.length >= 0) {
             for(var j = 0; j < item.missions.length; j++) {
                 missTags += '<span>' + item.missions[j].typeName + '</span>, ';
             }
 
-            elem += '<div class="tags ellipsis">Tags: ' + missTags.substring(0, missTags.length - 2) + '</div>';
+			elem += '<div class="tags ellipsis">Tags: ';
+			if(missTags != "") {
+				elem += missTags.substring(0, missTags.length - 2);
+			}else {
+				elem += '-'
+			}
+            elem += '</div>';
 		}
 
 		elem += '<div class="launch_site ellipsis">From ' + item.location.name + '</div>';

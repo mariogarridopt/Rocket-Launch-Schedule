@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Inconsolata');
 
 html { padding: 0; margin: 0; }
 
@@ -6,7 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 
-	min-height: 540px;
+	min-height: 560px;
 	width: 420px;
 
 	font-family: 'Open Sans', sans-serif;
@@ -84,6 +84,11 @@ article .imgwrapper img {
 	left: -9999px;
 	right: -9999px;
 	margin: auto;
+
+    background-image: url(../img/default_rocket.png);
+ 	background-repeat: no-repeat;
+    background-size: 138px 86px;
+    background-position: center;
 }
 
 article .missionTitle {
@@ -230,6 +235,33 @@ article:first-of-type .timeleft {
 	color: #313131;
 	text-align: center;
 	-webkit-font-smoothing: antialiased;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    height: 20px;
+    padding: 0 10px 0 10px;
+    
+	font-size: 11pt;
+	line-height: 20px;
+    text-align: center;
+	font-family: 'Inconsolata', monospace;
+
+	transition: all 1s;
+	cursor: help;
+}
+
+footer.info {
+    color: #909090;
+    background-color: #ececec;
+}
+
+footer.info:hover {
+    color: #464646;
+    background-color: #ffffff;
 }
 
 * {
