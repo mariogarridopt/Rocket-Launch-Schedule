@@ -14,16 +14,6 @@ $.ajax({
             chrome.tabs.create({'url': url});
         });
     });
-
-    chrome.alarms.clearAll();
-    console.log("####### CLEAR NOTIFICATIONS #######");
-    for(var i = 0; i < data['launches'].length; i++) {
-        var item = data['launches'][i];
-        var date = new Date(item.isonet.substring(0, 4) + "-" + item.isonet.substring(4, 6) + "-" + item.isonet.substring(6, 11) + ":" + item.isonet.substring(11, 13) + ":" + item.isonet.substring(13, 17));
-        chrome.alarms.create(item.id.toString(), { when:  (date - 900000) });
-        console.log("Alarm created: " + item.name + " at " + new Date(date - 900000).toLocaleString());
-    }
-
 }).fail(function() {
     $(".loading").css("margin-top", "0px");
 	$(".wrapper").append("<div class=\"error\">Servers temporarily offline, please try again later.</div>");
