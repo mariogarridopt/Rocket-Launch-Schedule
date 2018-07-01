@@ -1,7 +1,7 @@
 {
    "name": "Rocket Launch Schedule",
    "description": "List of all upcoming Launches",
-   "version": "18.6.29",
+   "version": "18.7.01",
    "manifest_version": 2,
 
    "browser_action": {
@@ -14,8 +14,6 @@
       "48": "img/icon_48.png"
    },
    "permissions": [
-      "https://launchlibrary.net/*",
-      "alarms",
-      "notifications"
+      "https://launchlibrary.net/*"
    ]
 }

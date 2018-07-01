@@ -7,11 +7,15 @@ $.ajax({
 }).done(function(data) {
     $(".loading").css("margin-top", "0px");
     drawArticles(data);
-    $(".loading img").fadeOut( 200, function(){
-    	$(".loading").slideUp( 100 );
-        $("a").click(function() {
-            var url = $(this).attr('href');
-            chrome.tabs.create({'url': url});
+
+    // Wait for the first image to load 
+    $('article:first-of-type .imgwrapper img').on('load', function() {
+        $(".loading img").fadeOut( 200, function(){
+            $(".loading").slideUp( 100 );
+            $("a").click(function() {
+                var url = $(this).attr('href');
+                chrome.tabs.create({'url': url});
+            });
         });
     });
 }).fail(function() {
@@ -26,7 +30,7 @@ $.ajax({
 
 function drawArticles(data) {
 	for(var i = 0; i < data.launches.length; i++) {
-		var elem = "<article>";
+		var elem = "<article" + ((i != 0) ? ' class="gradient" ' : '') + ">";
 		var item = data.launches[i];
         var launchLibraryPlaceHolderImage = "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_1920.png";
 
@@ -35,8 +39,8 @@ function drawArticles(data) {
             var contryCode = item.lsp.countryCode.toLowerCase();
             var imgSrc = 'https://restcountries.eu/data/' + contryCode + '.svg';
 		}else {
-			var imgSrc = item.rocket.imageURL.replace("_1920.", "_" + item.rocket.imageSizes[0] + ".");
-			//var imgSrc = item.rocket.imageURL.replace("_1920.", "_320.");
+			//var imgSrc = item.rocket.imageURL.replace("_1920.", "_" + item.rocket.imageSizes[0] + ".");
+			var imgSrc = item.rocket.imageURL.replace("_1920.", "_320.");
 		}
 
 
@@ -55,26 +59,20 @@ function drawArticles(data) {
 			missionName = item.name;
 		}
 
-		elem += '<div class="imgwrapper"><img src="' + imgSrc + '" /></div>';
+        elem += '<div class="imgwrapper"><img src="' + imgSrc + '" /></div>';
+		elem += '<div class="launch-info">';
 		elem += '<div class="missionTitle ellipsis">' + missionName + '</div>';
+		elem += '<div class="launch-site ellipsis">From ' + item.location.name + '</div>';
+		elem += '<div class="rocket ellipsis">With ' + item.rocket.name + '</div>';
 
-        missTags = "";
-		if (item.missions.length >= 0) {
-            for(var j = 0; j < item.missions.length; j++) {
-                missTags += '<span>' + item.missions[j].typeName + '</span>, ';
+        if(i != 0) {
+            if(item.vidURLs.length > 0) {
+                elem += '<a href="https://rocket.watch/#id=' + item.id + '"><span class="anounce more-info btn">+INFO</span></a>';
+                elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream btn">WATCH LIVE</span></a>';
+            }else {
+                elem += '<a href="https://rocket.watch/#id=' + item.id + '"><span class="anounce more-info btn extended">+INFO</span></a>';
             }
-
-			elem += '<div class="tags ellipsis">Tags: ';
-			if(missTags != "") {
-				elem += missTags.substring(0, missTags.length - 2);
-			}else {
-				elem += '-'
-			}
-            elem += '</div>';
-		}
-
-		elem += '<div class="launch_site ellipsis">From ' + item.location.name + '</div>';
-		elem += '<div class="rocket">With ' + item.rocket.name + '</div>';
+        }
 
 		var date = new Date(item.isonet.substring(0, 4) + "-" + item.isonet.substring(4, 6) + "-" + item.isonet.substring(6, 11) + ":" + item.isonet.substring(11, 13) + ":" + item.isonet.substring(13, 17));
 
@@ -88,19 +86,16 @@ function drawArticles(data) {
 		    elem += '<div class="timeleft">' + formatedTimeLeft + '</div>';
             elem += '<div class="datetime">' + formatDate(date) + ' at ' + formatTime(date) + '</div>';
         }else {
-            elem += '<div class="datetime">' + formatDate(date) + ' at ' + formatTime(date) + ' | [ <strong>'  + formatTimeLeft(date).replace(" days", "D")  + ' left</strong> ]</div>';
+            elem += '<div class="datetime">' + formatDate(date) + ' at ' + formatTime(date) + ' |  <strong>'  + formatTimeLeft(date).replace(" days", "D")  + ' left</strong></div>';
         }
+
+        elem += '</div>'; // close launch-info
 
 		
 		if(item.vidURLs.length > 0 && i == 0) {
-			elem += '<span class="anounce livestream"><a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><strong>&#149;</strong>&nbsp;&nbsp;Watch Live</a></span>';
-            elem += '<span class="anounce more-info"><a href="https://rocket.watch/#id=' + item.id + '"><strong>#</strong>&nbsp;More info</a></span>';
-		}else {
-            elem += '<span class="anounce more-info"><a href="https://rocket.watch/#id=' + item.id + '">See more</a></span>';
-        }
-
-
-
+			elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream">LIVE</span></a>';
+            elem += '<a href="https://rocket.watch/#id=' + item.id + '"><span class="anounce more-info">i</span></a>';
+		}
 
 		elem += "</article>";
 		$(".wrapper").append(elem);
