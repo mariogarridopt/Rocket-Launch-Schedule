@@ -8,7 +8,7 @@ body {
 	margin: 0;
 	padding: 0;
 
-	min-height: 547px;
+	min-height: 420px;
 	width: 420px;
 
 	font-family: 'Roboto Mono', monospace;
@@ -333,6 +333,69 @@ article .btn.extended {
 	width: 94%;
 }
 
+
+#ast-list {
+	position: relative;
+	display: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	padding: 0 20px 5px 20px;
+	background-color: #6c7a89;
+	text-align: center;
+}
+
+#ast-list .ast-title {
+	margin: 2px 0 5px 0;
+	font-size: 12px;
+	color: #ffffff;
+	text-align: left;
+}
+
+#ast-list .ast {
+	top: 0;
+	left: 0;
+	display: inline-block;
+	overflow: hidden;
+
+	border-radius: 100%;
+	box-sizing: border-box;
+	margin: 0 5px 0 5px;
+
+	border: 2px solid #fff;
+}
+
+#ast-list .ast img {
+	top: -9999px;
+	bottom: -9999px;
+	left: -9999px;
+	right: -9999px;
+	margin: auto;
+}
+
+#ast-list .ast img.horizontal {
+	height: 100%;
+}
+
+#ast-list .ast img.vertical {
+	width: 100%;
+}
+
+#ast-list .location {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+
+	background-color: rgba(255, 255, 255, 0.7);
+	text-decoration: none;
+	color: #000000;
+	font-size: 11px;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -345,7 +408,7 @@ footer {
 	line-height: 20px;
     text-align: center;
 	font-family: 'Inconsolata', monospace;
-	background-color: #6c7a89;
+	
 	color: #ffffff;
 
 	transition: all 0.5s;

@@ -3,7 +3,7 @@ $(".loading").fadeIn( 0 );
 $(".loading").css("margin-top", "200px");
 
 $.ajax({
-  url: "https://launchlibrary.net/1.4/launch/next/5"
+  url: "https://launchlibrary.net/1.4/launch/next/4"
 }).done(function(data) {
     $(".loading").css("margin-top", "0px");
     drawArticles(data);
@@ -98,9 +98,12 @@ function drawArticles(data) {
 		}
 
 		elem += "</article>";
-		$(".wrapper").append(elem);
-        $(".wrapper").fadeIn({duration: 600});
+        $(".wrapper").append(elem);
 	}
+    $(".wrapper").fadeIn(600, function(){
+        $(".wrapper").append('<div id="ast-list">');
+        getAstronauts();
+    });   
 }
 
 function checkNull(main, def) {
