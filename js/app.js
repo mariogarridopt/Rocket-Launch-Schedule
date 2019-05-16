@@ -8,7 +8,7 @@ $.ajax({
     $(".loading").css("margin-top", "0px");
     drawArticles(data);
 
-    // Wait for the first image to load 
+    // Wait for the first image to load
     $('article:first-of-type .imgwrapper img').on('load', function() {
         $(".loading img").fadeOut( 200, function(){
             $(".loading").slideUp( 100 );
@@ -49,7 +49,7 @@ function drawArticles(data) {
 		var arr = item.name.split("|");
 
 		if(Array.isArray(arr) && arr.length > 1) {
-			
+
 			for (var k = 1; k < arr.length; k++) {
                 missionName += arr[k].trim() + " "
 			}
@@ -67,10 +67,10 @@ function drawArticles(data) {
 
         if(i != 0) {
             if(item.vidURLs.length > 0) {
-                elem += '<a href="https://rocket.watch/#id=' + item.id + '"><span class="anounce more-info btn">+INFO</span></a>';
+                elem += '<a href="https://go4liftoff.com/#page=singleLaunch?filters=launchID=' + item.id + '"><span class="anounce more-info btn">+INFO</span></a>';
                 elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream btn">WATCH LIVE</span></a>';
             }else {
-                elem += '<a href="https://rocket.watch/#id=' + item.id + '"><span class="anounce more-info btn extended">+INFO</span></a>';
+                elem += '<a href="https://go4liftoff.com/#page=singleLaunch?filters=launchID=' + item.id + '"><span class="anounce more-info btn extended">+INFO</span></a>';
             }
         }
 
@@ -91,10 +91,10 @@ function drawArticles(data) {
 
         elem += '</div>'; // close launch-info
 
-		
+
 		if(item.vidURLs.length > 0 && i == 0) {
 			elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream">LIVE</span></a>';
-            elem += '<a href="https://rocket.watch/#id=' + item.id + '"><span class="anounce more-info">i</span></a>';
+            elem += '<a href="https://go4liftoff.com/#page=singleLaunch?filters=launchID=' + item.id + '"><span class="anounce more-info">i</span></a>';
 		}
 
 		elem += "</article>";
@@ -103,7 +103,7 @@ function drawArticles(data) {
     $(".wrapper").fadeIn(600, function(){
         $(".wrapper").append('<div id="ast-list">');
         getAstronauts();
-    });   
+    });
 }
 
 function checkNull(main, def) {
