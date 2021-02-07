@@ -3,7 +3,7 @@ $(".loading").fadeIn( 0 );
 $(".loading").css("margin-top", "200px");
 
 $.ajax({
-  url: "https://launchlibrary.net/1.4/launch/next/4"
+  url: "https://ll.thespacedevs.com/2.0.0/launch/upcoming/"
 }).done(function(data) {
     $(".loading").css("margin-top", "0px");
     drawArticles(data);
@@ -18,9 +18,26 @@ $.ajax({
             });
         });
     });
-}).fail(function() {
+}).fail(function(error) {
     $(".loading").css("margin-top", "0px");
-	$(".wrapper").append("<div class=\"error\">Servers temporarily offline, please try again later.</div>");
+	$(".wrapper").css({
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "height": "420px",
+    });
+
+	if (error.status === 429) {
+        $(".wrapper").append(`
+            <div class=\"error\">Max number of checks exceeded 
+                <br />(This is not the extension, the API is throttled). 
+                <br />You can check upcoming launches <a href='https://go4liftoff.com/launches' target='_blank'>here</a>.
+            </div>`);
+    } else {
+        $(".wrapper").append("<div class=\"error\">Servers temporarily offline, please try again later.</div>");
+    }
+
+
     $(".loading img").fadeOut( 200, function(){
     	$(".loading").slideUp( 100, function(){
     		$(".error").slideDown(200);
@@ -29,14 +46,14 @@ $.ajax({
   });
 
 function drawArticles(data) {
-	for(var i = 0; i < data.launches.length; i++) {
+	for(var i = 0; i < data.results.length; i++) {
 		var elem = "<article" + ((i != 0) ? ' class="gradient" ' : '') + ">";
-		var item = data.launches[i];
+		var item = data.results[i];
         var launchLibraryPlaceHolderImage = "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_1920.png";
 
 		if(	item.rocket.imageURL == null || item.rocket.imageURL == "" || item.rocket.imageURL == "Array" || item.rocket.imageURL == launchLibraryPlaceHolderImage) {
 			//var imgSrc = 'img/default_rocket.png';
-            var contryCode = item.lsp.countryCode.toLowerCase();
+            var contryCode = item.pad.location.country_code.toLowerCase();
             var imgSrc = 'https://restcountries.eu/data/' + contryCode + '.svg';
 		}else {
 			//var imgSrc = item.rocket.imageURL.replace("_1920.", "_" + item.rocket.imageSizes[0] + ".");
@@ -62,11 +79,11 @@ function drawArticles(data) {
         elem += '<div class="imgwrapper"><img src="' + imgSrc + '" /></div>';
 		elem += '<div class="launch-info">';
 		elem += '<div class="missionTitle ellipsis">' + missionName + '</div>';
-		elem += '<div class="launch-site ellipsis">From ' + item.location.name + '</div>';
-		elem += '<div class="rocket ellipsis">With ' + item.rocket.name + '</div>';
+		elem += '<div class="launch-site ellipsis">From ' + item.pad.location.name + '</div>';
+		elem += '<div class="rocket ellipsis">With ' + item.rocket.configuration.name + '</div>';
 
         if(i != 0) {
-            if(item.vidURLs.length > 0) {
+            if(item.vidURLs && item.vidURLs.length > 0) {
                 elem += '<a href="https://go4liftoff.com/#page=singleLaunch?filters=launchID=' + item.id + '"><span class="anounce more-info btn">+INFO</span></a>';
                 elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream btn">WATCH LIVE</span></a>';
             }else {
@@ -74,7 +91,7 @@ function drawArticles(data) {
             }
         }
 
-		var date = new Date(item.isonet.substring(0, 4) + "-" + item.isonet.substring(4, 6) + "-" + item.isonet.substring(6, 11) + ":" + item.isonet.substring(11, 13) + ":" + item.isonet.substring(13, 17));
+		var date = new Date(item.net);
 
 		if(i == 0) {
 		    var formatedTimeLeft = formatTimeLeft(date);
@@ -92,7 +109,7 @@ function drawArticles(data) {
         elem += '</div>'; // close launch-info
 
 
-		if(item.vidURLs.length > 0 && i == 0) {
+		if(item.vidURLs && item.vidURLs.length > 0 && i == 0) {
 			elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream">LIVE</span></a>';
             elem += '<a href="https://go4liftoff.com/#page=singleLaunch?filters=launchID=' + item.id + '"><span class="anounce more-info">i</span></a>';
 		}
