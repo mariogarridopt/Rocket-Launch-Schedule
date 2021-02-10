@@ -21,8 +21,13 @@ body {
 .wrapper {
 	width: 100%;
 	min-height: 100%;
-	display: none;
+	/* display: none; /* error message not showing up */
 	background-color: #dadfe1;
+}
+
+.error {
+	color: #7c0010;
+	padding: 60px;
 }
 
 article:first-of-type {
