@@ -346,7 +346,7 @@ article .btn.extended {
 	left: 0;
 	right: 0;
 	overflow: hidden;
-	padding: 0 20px 5px 20px;
+	padding: 8px 20px 2px 20px;
 	background-color: #6c7a89;
 	text-align: center;
 }
@@ -450,7 +450,7 @@ footer:hover {
 }
 
 .loading {
-	display: none;
+	display: block;
 	position: absolute;
 	width: 100px;
 	height: 100px;
@@ -458,8 +458,8 @@ footer:hover {
 	left: calc(50% - 50px);
 	top: 5px;
 
-	-webkit-transition: margin-top 2s;
-	-moz-transition: margin-top 2s;
-	-o-transition: margin-top 2s;
-	transition: margin-top 2s;
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
 }
