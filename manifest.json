@@ -1,16 +1,24 @@
 {
-    "name": "Rocket Launch Schedule",
-    "description": "List of all upcoming rocket launches",
-    "version": "23.2.1",
-    "manifest_version": 3,
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": "img/icon_16.png"
-    },
-    "icons": {
-        "128": "img/icon_128.png",
-        "16": "img/icon_16.png",
-        "48": "img/icon_48.png"
-    },
-    "permissions": ["storage", "https://ll.thespacedevs.com/*"]
+  "name": "Rocket Launch Schedule",
+  "description": "List of all upcoming rocket launches",
+  "version": "23.2.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "img/icon_16.png"
+  },
+  "icons": {
+    "128": "img/icon_128.png",
+    "16": "img/icon_16.png",
+    "48": "img/icon_48.png"
+  },
+  "permissions": [
+    "storage",
+    "https://ll.thespacedevs.com/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "login@mariogarrido.pt"
+    }
   }
+}
