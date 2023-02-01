@@ -2,7 +2,7 @@ var getAstronauts = function() {
 	var data = [];
 	$.ajax({
 		method: "GET",
-		url: "http://api.open-notify.org/astros.json"
+		url: "https://api.open-notify.org/astros.json"
 	}).done(function( astronauts ) {
 		var total = astronauts['people'].length;
 
