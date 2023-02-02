@@ -7,7 +7,7 @@ const CACHE_PREFIX = "rls";
  * @returns {boolean} is there a valid cached data
  */
 function isDataInCache(key) {
-    const interval = 20;
+    const interval = 6; // in minutes
     const date = localStorage.getItem((CACHE_PREFIX + '_date_' + key));
     
     if(date != null && date != "") {
