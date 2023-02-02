@@ -8,11 +8,11 @@ function drawLaunchHtml(data) {
 
     if(!Array.isArray(data.results)) return;
 
-    for (var i = 0; i < data.results.length; i++) {
+    for (var i = 0; i < data.results.length && itemNum < 6; i++) {
         var elem = "<article" + ((itemNum != 0) ? ' class="gradient" ' : '') + ">";
         const item = data.results[i];
 
-        const date_now = Date();
+        const date_now = new Date();
         const end_window = new Date(Date.parse(item.window_end));
         if (end_window < date_now) {
             continue;
@@ -46,8 +46,9 @@ function drawLaunchHtml(data) {
 
         if (itemNum != 0) {
             if (item.vidURLs && item.vidURLs.length > 0) {
+                let videoText = item.webcast_live ? "LIVE" : "WATCH VIDEO";
                 elem += '<a href="https://go4liftoff.com/launch/id/' + item.id + '"><span class="anounce more-info btn">+INFO</span></a>';
-                elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream btn">WATCH LIVE</span></a>';
+                elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream btn">' + videoText + '</span></a>';
             } else {
                 elem += '<a href="https://go4liftoff.com/launch/id/' + item.id + '"><span class="anounce more-info btn extended">+INFO</span></a>';
             }
@@ -72,7 +73,8 @@ function drawLaunchHtml(data) {
 
 
         if (item.vidURLs && item.vidURLs.length > 0 && itemNum == 0) {
-            elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))]["url"] + '"><span class="anounce livestream">LIVE</span></a>';
+            let videoText = item.webcast_live ? "LIVE" : "WATCH VIDEO";
+            elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))]["url"] + '"><span class="anounce livestream">' + videoText + '</span></a>';
             elem += '<a href="https://go4liftoff.com/launch/id/' + item.id + '"><span class="anounce more-info">i</span></a>';
         }
 
