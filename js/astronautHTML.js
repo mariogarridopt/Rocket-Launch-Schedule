@@ -18,8 +18,9 @@ function drawAstronautHtml(data) {
             size = Math.floor((420 - (obj_p_line * 10) - 40) / obj_p_line);
         }
 
+        let wiki = (crew.wiki != null) ? crew.wiki : "https://www.google.com/search?q=" + encodeURI("astronaut " + crew.name);
         html +=
-            '<a href="' + crew.wiki + '" ' +
+            '<a href="' + wiki + '" ' +
             'class="ast" id="ast-' + crew.id + '" '+
             'style="position: relative; ' +
             'width: ' + size + 'px; height: ' + size + 'px;" >' +
