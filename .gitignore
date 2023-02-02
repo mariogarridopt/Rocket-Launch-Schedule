@@ -1,5 +1,6 @@
 ### BUILD ###
 app.js
+build/
 
 ### macOS ###
 *.DS_Store
