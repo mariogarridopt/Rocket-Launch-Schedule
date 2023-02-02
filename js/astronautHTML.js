@@ -6,29 +6,27 @@
 function drawAstronautHtml(data) {
     var size = 53;
     var html = "";
+    const list = data.results;
 
     document.getElementById("main-content").innerHTML += '<div id="ast-list"></div>';
     
-    for (let i = 0; i < data.active_expeditions.length; i++) {
-        const expedition = data.active_expeditions[i];
-        for (let j = 0; j < expedition.crew.length; j++) {
-            const obj_p_line = expedition.crew.length;
-            if(obj_p_line > 6) {
-                size = Math.floor((420 - (obj_p_line * 10) - 40) / obj_p_line);
-            }
+    for (let i = 0; i < list.length; i++) {
+        const crew = list[i];
+        const obj_p_line = list.length;
 
-            const crew = expedition.crew[j].astronaut;
+        if(obj_p_line > 6) {
+            size = Math.floor((420 - (obj_p_line * 10) - 40) / obj_p_line);
+        }
 
-            html +=
-                '<a href="https://www.google.com/search?q=' + encodeURI(crew.name + " ISS") + '" ' +
-                'class="ast" id="ast-' + crew.id + '" '+
-                'style="position: relative; ' +
-                'width: ' + size + 'px; height: ' + size + 'px;" >' +
-                '<span class="location">ISS</span>' +
-                '<img src="' + crew.profile_image_thumbnail + '" ' +
-                'class="horizontal"></img>' +
-                '</a>';
-        }        
+        html +=
+            '<a href="' + crew.wiki + '" ' +
+            'class="ast" id="ast-' + crew.id + '" '+
+            'style="position: relative; ' +
+            'width: ' + size + 'px; height: ' + size + 'px;" >' +
+            '<!--span class="location">ISS</span-->' +
+            '<img src="' + crew.profile_image_thumbnail + '" ' +
+            'class="horizontal"></img>' +
+            '</a>';        
     }
 
     document.getElementById("ast-list").innerHTML = html;
