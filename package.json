@@ -1,0 +1,18 @@
+{
+  "name": "rocket-launch-schedule",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariogarridopt/Rocket-Launch-Schedule.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mariogarridopt/Rocket-Launch-Schedule/issues"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-watch": "^5.0.1"
+  }
+}
