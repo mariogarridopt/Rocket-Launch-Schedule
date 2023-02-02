@@ -8,8 +8,6 @@ function drawAstronautHtml(data) {
     var html = "";
     const list = data.results;
 
-    document.getElementById("main-content").innerHTML += '<div id="ast-list"></div>';
-    
     for (let i = 0; i < list.length; i++) {
         const crew = list[i];
         const obj_p_line = list.length;
