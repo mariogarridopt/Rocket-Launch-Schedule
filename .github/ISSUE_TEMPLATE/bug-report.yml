@@ -25,13 +25,6 @@ body:
     validations:
       required: true
 
-  - type: input
-    attributes:
-      label: Website Address
-      description: Provide the website address.
-    validations:
-      required: true
-
   - type: textarea
     attributes:
       label: Steps To Reproduce
@@ -66,19 +59,13 @@ body:
 
   - type: input
     attributes:
-      label: Operating System
-    validations:
-      required: true
-
-  - type: input
-    attributes:
       label: Web Browser name and version
     validations:
       required: true
 
   - type: input
     attributes:
-      label: Dark Reader version
+      label: Rocket Launch Schedule version
     validations:
       required: true
 
