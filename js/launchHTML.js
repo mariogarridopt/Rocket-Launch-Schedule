@@ -8,7 +8,7 @@ function drawLaunchHtml(data) {
 
     if(!Array.isArray(data.results)) return;
 
-    for (var i = 0; i < data.results.length && itemNum < 6; i++) {
+    for (var i = 0; i < data.results.length && itemNum < 5; i++) {
         var elem = "<article" + ((itemNum != 0) ? ' class="gradient" ' : '') + ">";
         const item = data.results[i];
 
