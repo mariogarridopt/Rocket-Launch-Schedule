@@ -46,10 +46,10 @@ function drawLaunchHtml(data) {
 
         if (itemNum != 0) {
             if (item.vidURLs && item.vidURLs.length > 0) {
-                elem += '<a href="https://go4liftoff.com/launch/' + item.slug + '"><span class="anounce more-info btn">+INFO</span></a>';
+                elem += '<a href="https://go4liftoff.com/launch/id/' + item.id + '"><span class="anounce more-info btn">+INFO</span></a>';
                 elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))] + '"><span class="anounce livestream btn">WATCH LIVE</span></a>';
             } else {
-                elem += '<a href="https://go4liftoff.com/launch/' + item.slug + '"><span class="anounce more-info btn extended">+INFO</span></a>';
+                elem += '<a href="https://go4liftoff.com/launch/id/' + item.id + '"><span class="anounce more-info btn extended">+INFO</span></a>';
             }
         }
 
@@ -73,7 +73,7 @@ function drawLaunchHtml(data) {
 
         if (item.vidURLs && item.vidURLs.length > 0 && itemNum == 0) {
             elem += '<a href="' + item.vidURLs[Math.floor((Math.random() * item.vidURLs.length))]["url"] + '"><span class="anounce livestream">LIVE</span></a>';
-            elem += '<a href="https://go4liftoff.com/launch/' + item.slug + '"><span class="anounce more-info">i</span></a>';
+            elem += '<a href="https://go4liftoff.com/launch/id/' + item.id + '"><span class="anounce more-info">i</span></a>';
         }
 
         elem += "</article>";
