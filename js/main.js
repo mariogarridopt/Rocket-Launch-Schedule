@@ -23,7 +23,7 @@ if (isDataInCache("astronaut")) {
     drawAstronautHtml(astronaut);
 } else {
     const astronautsAPI =
-    "https://ll.thespacedevs.com/2.2.0/spacestation/4/";
+    "https://ll.thespacedevs.com/2.2.0/astronaut/?in_space=true&is_human=true";
 
     _ajaxrequest(astronautsAPI, function (d) {
         if(d != false) {
