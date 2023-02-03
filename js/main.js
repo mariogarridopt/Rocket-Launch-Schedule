@@ -6,13 +6,13 @@ if (isDataInCache("launch")) {
     const launchesAPI =
         "https://ll.thespacedevs.com/2.0.0/launch/upcoming/?limit=10&mode=detailed";
 
-    _ajaxrequest(launchesAPI, function (d) {
+    _ajaxrequest(launchesAPI, function(d) {
         if (d != false) {
             updateCachedData("launch", d);
             drawLaunchHtml(d);
         }
     },
-        function (e) {
+        function(e) {
             console.error(e);
         });
 }
@@ -25,13 +25,13 @@ if (isDataInCache("astronaut")) {
     const astronautsAPI =
         "https://ll.thespacedevs.com/2.2.0/astronaut/?in_space=true&is_human=true";
 
-    _ajaxrequest(astronautsAPI, function (d) {
+    _ajaxrequest(astronautsAPI, function(d) {
         if (d != false) {
             updateCachedData("astronaut", d);
             drawAstronautHtml(d);
         }
     },
-        function (e) {
+        function(e) {
             console.error(e);
         });
 }

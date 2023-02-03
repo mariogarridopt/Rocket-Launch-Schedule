@@ -12,20 +12,20 @@ function drawAstronautHtml(data) {
         const crew = list[i];
         const obj_p_line = list.length;
 
-        if(obj_p_line > 6) {
+        if (obj_p_line > 6) {
             size = Math.floor((420 - (obj_p_line * 10) - 40) / obj_p_line);
         }
 
         let wiki = (crew.wiki != null) ? crew.wiki : "https://www.google.com/search?q=" + encodeURI("astronaut " + crew.name);
         html +=
             '<a href="' + wiki + '" ' +
-            'class="ast" id="ast-' + crew.id + '" '+
+            'class="ast" id="ast-' + crew.id + '" ' +
             'style="position: relative; ' +
             'width: ' + size + 'px; height: ' + size + 'px;" >' +
             '<!--span class="location">ISS</span-->' +
             '<img src="' + crew.profile_image_thumbnail + '" ' +
             'class="horizontal"></img>' +
-            '</a>';        
+            '</a>';
     }
 
     document.getElementById("ast-list").innerHTML = html;

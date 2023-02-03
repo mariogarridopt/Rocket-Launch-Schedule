@@ -9,12 +9,12 @@ const CACHE_PREFIX = "rls";
 function isDataInCache(key) {
     const interval = 10; // in minutes
     const date = localStorage.getItem((CACHE_PREFIX + '_date_' + key));
-    
-    if(date != null && date != "") {
+
+    if (date != null && date != "") {
         const current_date = new Date();
         const request_date = new Date((new Date()).getTime() + interval * 60000);
 
-        if(request_date > current_date) {
+        if (request_date > current_date) {
             return true;
         }
     }
